@@ -106,20 +106,26 @@ function showQuestion () {
   let currentQuestion = questions[currentQuestionIndex];
   let questionNo = currentQuestionIndex + 1;
   questionElement.innerHTML = questionNo + ". " + currentQuestion.question;
+  questionElement.classList.add("fade-in");
+
   answerButtonsElement.innerHTML = ""; 
 
   currentQuestion.answers.forEach(answer => {
     const button  =  document.createElement("button");
     button.innerHTML = answer.text;
-    button.classList.add("btn");
+    button.classList.add("btn", "fade-in");
     answerButtonsElement.appendChild(button); 
     if (answer.correct) {
       button.dataset.correct = answer.correct;
     }
     button.addEventListener("click", selectAnswer);
   });
+
+  setTimeout(() => {
+    questionElement.classList.remove("fade-in");
+  }, 500);
 }
- 
+
   function selectAnswer (e) {
     const selectedbtn = e.target;
     const iscorrect = selectedbtn.dataset.correct === "true";
