@@ -122,10 +122,23 @@ function showQuestion () {
   }
 
   function showScore () {
+    const precentage = Math.round((score / questions.length)) * 100;
     questionElement.innerHTML = `You scored ${score} out of ${questions.length}!`;
     answerButtonsElement.innerHTML = ""; 
     nextButton.innerHTML = "Restart";
     nextButton.style.display = "block"; 
+
+    const highscore = localStorage.getItem("highscore") || 0;
+    if (score > highscore) {
+      localStorage.setItem("highscore", score);
+      const newHighscore = document.createElement("p");
+      newHighscore.innerText = ` 🎉 New Highscore: ${score}`;
+      answerButtonsElement.appendChild(newHighscore);
+    }else {
+      const prevHigh = document.createElement("p");
+      prevHigh.innerText = `Previous Highscore: ${highscore}`;
+      answerButtonsElement.appendChild(prevHigh);
+    }
   }
 
   function handleNextButton () {
