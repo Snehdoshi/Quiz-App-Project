@@ -82,3 +82,19 @@ body {
   background: #ff0000;
   color: #fff;
 }
+
+#progress-bar {
+  width: 100%;
+  height: 10px;
+  background: #eee;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+#progress {
+  height: 100%;
+  width: 0;
+  background-color: #4CAF40;
+  transition: width 0.3s ease;
+}

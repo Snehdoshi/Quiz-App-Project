@@ -21,7 +21,7 @@ const questions = [
         { text: "Tokyo", correct: true },
         { text: "Seoul", correct: false },
         { text: "Beijing", correct: false },
-        { text: "Bangkok", correct: false }
+        { text: "Osaka", correct: false }
     ]
   },{
     question: "Which planet is known as the Red Planet?" ,
@@ -65,7 +65,24 @@ const questions = [
         { text: "Nitrogen", correct: false },
         { text: "Hydrogen", correct: false }
     ]
+  },{
+    question: "Who won the FIFA World Cup in 2022?",
+    answers: [
+      { text: "France", correct: false },
+      { text: "Germany", correct: false },
+      { text: "Argentina", correct: true },
+      { text: "Brazil", correct: false }
+    ]
+  },{
+    question: "Which programming language is primarily used for developing Android apps?",
+    answers: [
+      { text: "Swift", correct: false },
+      { text: "Kotlin", correct: true },
+      { text: "Python", correct: false },
+      { text: "C#", correct: false }
+    ]
   }
+
 ];
 
 const questionElement = document.getElementById("question");
@@ -85,6 +102,7 @@ function startQuiz () {
 }
 
 function showQuestion () {
+  updateProgressBar();
   let currentQuestion = questions[currentQuestionIndex];
   let questionNo = currentQuestionIndex + 1;
   questionElement.innerHTML = questionNo + ". " + currentQuestion.question;
@@ -157,5 +175,16 @@ function showQuestion () {
       startQuiz();
     }
   });
+
+  function updateProgressBar () {
+    const progress = document.getElementById("progress");
+    let percent;
+    if (currentQuestionIndex === questions.length - 1) {
+      percent = 100;
+    } else {
+      percent = ((currentQuestionIndex ) / questions.length) * 100;
+    }
+    progress.style.width = `${percent}%`;
+  }
 
 startQuiz();
